@@ -1,0 +1,25 @@
+### Basic protection for shared-hosting deployments ###
+# Deny access to environment file
+<Files ".env">
+    Require all denied
+</Files>
+
+# Deny direct access to sensitive directories
+RedirectMatch 404 ^/(app|bootstrap|vendor|storage)/
+
+# Send all requests to index.php (Laravel)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+    # Prevent directory listing
+    Options -Indexes
+</IfModule>
+
+# Recommended headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
