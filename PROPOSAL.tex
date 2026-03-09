@@ -1,0 +1,495 @@
+\documentclass[12pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multirow}
+\usepackage{amssymb}
+
+% ── Colors ────────────────────────────────────────────────
+\definecolor{mkgreen}{HTML}{166534}
+\definecolor{mkamber}{HTML}{D97706}
+\definecolor{mkred}{HTML}{DC2626}
+\definecolor{mkdark}{HTML}{1E293B}
+\definecolor{mkgray}{HTML}{64748B}
+\definecolor{mklight}{HTML}{F8FAFC}
+
+% ── Hyperlinks ────────────────────────────────────────────
+\hypersetup{
+    colorlinks=true,
+    linkcolor=mkgreen,
+    urlcolor=mkgreen,
+    citecolor=mkgreen,
+}
+
+% ── Header / Footer ──────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{mkgray}{Mukusho Karate Kenya --- Website Proposal}}
+\fancyhead[R]{\small\textcolor{mkgray}{MKK-WEB-2026-001}}
+\fancyfoot[C]{\small\textcolor{mkgray}{Page \thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ── Section Styling ──────────────────────────────────────
+\titleformat{\section}
+    {\Large\bfseries\color{mkgreen}}
+    {\thesection.}{0.5em}{}
+\titleformat{\subsection}
+    {\large\bfseries\color{mkdark}}
+    {\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\color{mkdark}}
+    {\thesubsubsection}{0.5em}{}
+
+% ── Document ─────────────────────────────────────────────
+\begin{document}
+
+% ══════════════════════════════════════════════════════════
+% TITLE PAGE
+% ══════════════════════════════════════════════════════════
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\Huge\bfseries\color{mkgreen} Website Development Proposal}\\[0.5cm]
+    {\LARGE\color{mkdark} Mukusho Karate Kenya}\\[0.3cm]
+    {\large\color{mkamber} Official Website}\\[2cm]
+
+    \rule{\textwidth}{1pt}\\[0.5cm]
+
+    \begin{tabular}{rl}
+        \textbf{Prepared by:}  & Daniel Vee \\[0.3em]
+        \textbf{Prepared for:} & Sensei Benard Kihachu \\
+                               & Mukusho Karate Kenya \\[0.3em]
+        \textbf{Date:}         & March 8, 2026 \\[0.3em]
+        \textbf{Reference:}    & MKK-WEB-2026-001 \\
+    \end{tabular}
+
+    \vspace{1cm}
+    \rule{\textwidth}{1pt}
+
+    \vfill
+
+    {\small\color{mkgray}
+    \textit{``Empowering every child with the greatness within them through confidence, discipline, and teamwork.''}\\
+    --- Mukusho Karate Kenya}
+
+    \vspace{1cm}
+    {\small\textcolor{mkgray}{\textcopyright\ 2026 Daniel Vee. All rights reserved.}}
+\end{titlepage}
+
+% ══════════════════════════════════════════════════════════
+% TABLE OF CONTENTS
+% ══════════════════════════════════════════════════════════
+\tableofcontents
+\newpage
+
+% ══════════════════════════════════════════════════════════
+% 1. EXECUTIVE SUMMARY
+% ══════════════════════════════════════════════════════════
+\section{Executive Summary}
+
+Dear Sensei Benard Kihachu,
+
+I am pleased to present this proposal for the design, development, and delivery of a \textbf{fully custom, professional website} for \textbf{Mukusho Karate Kenya}. This website has been purpose-built from the ground up to represent the club's identity, serve its operational needs, and provide a powerful digital presence that attracts new students, engages existing members, and showcases the club's achievements nationally and internationally.
+
+This is not a generic template --- it is a \textbf{bespoke web application} with a full Content Management System (CMS), member registration portal, payment tracking, admin dashboard, multi-media gallery, and more --- all tailored specifically to Mukusho Karate Kenya's operations.
+
+% ══════════════════════════════════════════════════════════
+% 2. SCOPE OF WORK
+% ══════════════════════════════════════════════════════════
+\section{Scope of Work Delivered}
+
+\subsection{Public-Facing Website (17 Sections)}
+
+\begin{longtable}{p{4cm}p{10cm}}
+    \toprule
+    \textbf{Feature} & \textbf{Description} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Feature} & \textbf{Description} \\
+    \midrule
+    \endhead
+    Homepage & 1,500+ lines of hand-crafted, responsive design with Kenyan-themed branding (green, red, amber) \\
+    Navigation & Responsive navbar with desktop and mobile menu, smooth scroll, section anchoring \\
+    Hero Section & Full-width animated hero banner with call-to-action buttons \\
+    About Section & Club history, mission statement, and CMS-managed imagery \\
+    Programs & 4 program cards (Little Warriors, Teens \& Adults, Elite Competition, Self-Defence) --- all CMS-driven with dynamic pricing, features, and icons \\
+    Clubs / Locations & CMS-managed affiliated club listings across Nyeri, Nanyuki, Murang'a, Othaya \\
+    Instructors & CMS-driven instructor profiles with uploaded photos, bios, social links, and tags \\
+    Achievements & CMS-managed champion showcase with uploaded media \\
+    Values & CMS-driven values display (Respect, Discipline, Focus, etc.) \\
+    Why Choose Us & 6-card feature grid highlighting expert coaching, family-friendly, competition success, personal growth, affordability \\
+    Events & Smart date-based filtering (Upcoming vs Recent) with multi-media mini slideshows \\
+    Gallery / Media & Full-screen slideshow with autoplay, navigation, thumbnails, video support, plus static grid \\
+    Schedule & CMS-managed weekly training schedule \\
+    Testimonials & CMS-driven student testimonial cards \\
+    FAQ & Accordion-style CMS-managed FAQ section \\
+    Contact / Free Trial & Contact details + free trial request form with database storage \\
+    Footer & Multi-column footer with quick links, contact info, social media \\
+    \bottomrule
+\end{longtable}
+
+\subsection{Member Registration System}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Registration type chooser} --- Kid vs Adult registration path
+    \item \textbf{Kid registration form} --- Guardian details, school, emergency contacts, optional photo upload
+    \item \textbf{Adult registration form} --- Personal details, belt rank, emergency contacts, optional photo upload
+    \item \textbf{Success page} --- Post-registration confirmation with M-Pesa payment instructions
+    \item \textbf{Database storage} --- All registrations stored securely in MySQL with validation
+\end{itemize}
+
+\subsection{Payment Tracking System}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Monthly payment recording form with member linkage
+    \item Payment confirmation page with transaction reference
+    \item All payments stored and trackable in the admin dashboard
+\end{itemize}
+
+\subsection{Admin Dashboard \& CMS}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Secure authentication} --- Admin login with email/password
+    \item \textbf{Role-Based Access Control (RBAC)} --- 4 roles: Super Admin, Admin, Editor, Viewer with granular permissions
+    \item \textbf{Content Management System} --- Full CRUD for 11 CMS sections (48+ content items), archive/restore, dynamic extra fields
+    \item \textbf{Multi-media upload} --- Drag-and-drop image and video upload (multiple files), individual delete, automatic thumbnails
+    \item \textbf{User management} --- Create, edit, approve, reject, delete admin users
+    \item \textbf{Data exports} --- Export members and payments to CSV, Excel (XLS), and PDF
+    \item \textbf{Free trial requests} --- View and manage contact form submissions
+\end{itemize}
+
+\subsection{Technical Specifications}
+
+\begin{tabular}{ll}
+    \toprule
+    \textbf{Component} & \textbf{Technology} \\
+    \midrule
+    Backend Framework & Laravel 12.x (PHP 8.4) \\
+    Frontend & Tailwind CSS, Alpine.js \\
+    Build Tool & Vite 7.x \\
+    Database & MySQL \\
+    Fonts & Oswald (headings) + Inter (body) \\
+    File Storage & Laravel Public Disk with symlink \\
+    Authentication & Laravel built-in auth with bcrypt \\
+    Responsive Design & Mobile-first, cross-device tested \\
+    \bottomrule
+\end{tabular}
+
+\subsection{Codebase Statistics}
+
+\begin{tabular}{lr}
+    \toprule
+    \textbf{Metric} & \textbf{Count} \\
+    \midrule
+    Custom PHP files & 12 \\
+    Blade view templates & 17 \\
+    Lines of custom code & 5,000+ \\
+    Database migrations & 7 \\
+    Eloquent models & 6 \\
+    Controllers & 5 \\
+    Named routes & 30+ \\
+    \bottomrule
+\end{tabular}
+
+% ══════════════════════════════════════════════════════════
+% 3. WHY THIS INVESTMENT IS WORTH IT
+% ══════════════════════════════════════════════════════════
+\section{Why This Investment is Worth It}
+
+\subsection{Custom-Built, Not a Template}
+
+Generic website templates from Wix, WordPress themes, or Squarespace cost KSH 13,000--39,000/year and look like every other site. \textbf{This website is built from scratch} with:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Kenyan-themed branding (KKF flag colors)
+    \item Custom UI components designed specifically for a karate dojo
+    \item A built-in CMS so you never need a developer to update content
+    \item Purpose-built registration and payment systems for your exact workflow
+\end{itemize}
+
+\subsection{Full Content Control}
+
+You control \textbf{every piece of content} on your website --- programs, events, instructors, achievements, clubs, testimonials, FAQs, schedule --- all from your admin panel. No monthly fees to a content editor. No waiting for someone else.
+
+\subsection{Professional Digital Presence}
+
+In 2026, a professional website is \textbf{essential} for a sports club that:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Attracts parents to enrol their children
+    \item Recruits members from Nyeri, Nanyuki, Murang'a, and beyond
+    \item Represents Kenya at national and international competitions
+    \item Partners with organisations like PowerGirl Africa
+\end{itemize}
+
+A professional website builds \textbf{trust, credibility, and accessibility} that social media alone cannot provide.
+
+\subsection{Member Registration Pipeline}
+
+The built-in registration system means new students can sign up \textbf{24/7} from their phones. The free trial form captures leads. The admin dashboard gives you a clear view of all registrations and payments.
+
+\subsection{SEO \& Discoverability}
+
+The website is built with proper HTML semantics, fast loading, and structured content --- making it discoverable on Google when people search for ``karate classes Nyeri'', ``martial arts Kenya'', or ``kids karate near me''.
+
+\subsection{Scalability}
+
+The architecture supports future additions: M-Pesa STK Push integration, event registration and ticketing, student grading/belt progression, e-commerce, email/SMS notifications, and multi-language support.
+
+% ══════════════════════════════════════════════════════════
+% 4. PRICING
+% ══════════════════════════════════════════════════════════
+\section{Pricing}
+
+\subsection{Website Development (One-Time Cost)}
+
+\begin{longtable}{p{5cm}p{5.5cm}r}
+    \toprule
+    \textbf{Item} & \textbf{Description} & \textbf{KSH} \\
+    \midrule
+    \endfirsthead
+    Custom design \& development & Full-stack web app, 17 templates, 5 controllers, 6 models, 30+ routes & 15,000 \\
+    Content Management System & 11-section CMS with CRUD, media uploads, archiving & 6,000 \\
+    Member registration system & Kid + Adult registration, validation, photo upload, DB storage & 4,500 \\
+    Payment tracking system & Monthly payment recording, member linkage, success flow & 3,000 \\
+    Admin dashboard \& RBAC & Secure login, 4-role system, user management, exports & 5,000 \\
+    Multi-media gallery & Drag-and-drop upload, slideshow, video support & 3,500 \\
+    Responsive design & Mobile-first, cross-browser, performance optimization & 3,000 \\
+    \midrule
+    \textbf{TOTAL (Development)} & & \textbf{40,000} \\
+    \bottomrule
+\end{longtable}
+
+\subsection{Deployment \& Launch (One-Time Cost)}
+
+\begin{tabularx}{\textwidth}{Xr}
+    \toprule
+    \textbf{Item} & \textbf{KSH} \\
+    \midrule
+    Domain name registration (1 year) & 1,500--3,000 \\
+    Server setup \& deployment (VPS, SSL, DNS) & 5,000 \\
+    Database migration \& seeding & Included \\
+    Training session (1 hour) & Included \\
+    \midrule
+    \textbf{TOTAL (Deployment)} & \textbf{6,500--8,000} \\
+    \bottomrule
+\end{tabularx}
+
+\subsection{Grand Total (One-Time)}
+
+\begin{center}
+\begin{tabular}{lr}
+    \toprule
+    & \textbf{KSH} \\
+    \midrule
+    Website Development & 40,000 \\
+    Deployment \& Launch & 6,500 -- 8,000 \\
+    \midrule
+    \textbf{GRAND TOTAL} & \textbf{46,500 -- 48,000} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{small}
+\textit{Note: The development cost of \textbf{KSH 40,000} covers all design, coding, and system building. Deployment costs (domain, hosting, server setup) are billed separately as third-party expenses.}
+\end{small}
+
+% ══════════════════════════════════════════════════════════
+% 5. RECURRING ANNUAL COSTS
+% ══════════════════════════════════════════════════════════
+\section{Recurring Annual Costs (Post-Delivery)}
+
+After the website is built and delivered, the following costs are incurred \textbf{yearly} to keep it running:
+
+\begin{longtable}{p{4cm}p{5cm}r}
+    \toprule
+    \textbf{Item} & \textbf{Description} & \textbf{KSH/yr} \\
+    \midrule
+    \endfirsthead
+    Domain renewal & .co.ke or .com domain & 1,500--2,500 \\
+    Web hosting (VPS) & Cloud server (24/7 uptime) & 7,200--15,000 \\
+    SSL certificate & HTTPS security & 0--5,000 \\
+    Maintenance \& updates & Security patches, bug fixes & 10,000--20,000 \\
+    Backup service & Automated database/file backups & 0--3,000 \\
+    Email hosting (optional) & info@mukushokarate.co.ke & 1,500--6,000 \\
+    \midrule
+    \textbf{TOTAL (Annual)} & & \textbf{20,200--51,500} \\
+    \bottomrule
+\end{longtable}
+
+\begin{small}
+\textit{Note: The minimum annual cost to keep the website live is approximately \textbf{KSH 8,700/year} --- just domain + basic hosting + free SSL.}
+\end{small}
+
+% ══════════════════════════════════════════════════════════
+% 6. OPTIONAL ADD-ONS
+% ══════════════════════════════════════════════════════════
+\section{Optional Add-Ons (Future Enhancements)}
+
+These can be added at any time after launch:
+
+\begin{longtable}{p{4cm}p{5.5cm}r}
+    \toprule
+    \textbf{Feature} & \textbf{Description} & \textbf{KSH} \\
+    \midrule
+    \endfirsthead
+    M-Pesa Integration & Direct STK Push payments & 15,000--25,000 \\
+    SMS Notifications & Registration/payment/event alerts & 8,000--12,000 \\
+    Email Newsletters & Automated campaigns to members & 8,000--12,000 \\
+    Progress Tracker & Belt grading, attendance, skills & 15,000--20,000 \\
+    Online Store & Uniforms, belts, merchandise & 20,000--35,000 \\
+    Event Registration & Online sign-up for competitions & 10,000--15,000 \\
+    Multi-language & Swahili + English toggle & 8,000--12,000 \\
+    Mobile App & Native Android/iOS companion & 100,000--200,000 \\
+    \bottomrule
+\end{longtable}
+
+% ══════════════════════════════════════════════════════════
+% 7. PAYMENT TERMS
+% ══════════════════════════════════════════════════════════
+\section{Payment Terms}
+
+\begin{tabularx}{\textwidth}{Xlr}
+    \toprule
+    \textbf{Milestone} & \textbf{\%} & \textbf{KSH} \\
+    \midrule
+    Project acceptance (signing proposal) & 50\% & 20,000 \\
+    Beta delivery (demo ready for review) & 37.5\% & 15,000 \\
+    Final delivery \& deployment & 12.5\% & 5,000 \\
+    \midrule
+    \textbf{TOTAL} & \textbf{100\%} & \textbf{40,000} \\
+    \bottomrule
+\end{tabularx}
+
+\vspace{0.5em}
+\textit{Payment via M-Pesa, bank transfer, or PayPal.}
+
+% ══════════════════════════════════════════════════════════
+% 8. TIMELINE
+% ══════════════════════════════════════════════════════════
+\section{Timeline}
+
+\begin{tabularx}{\textwidth}{p{2.5cm}p{3cm}X}
+    \toprule
+    \textbf{Phase} & \textbf{Duration} & \textbf{Deliverable} \\
+    \midrule
+    Week 1--2 & Design \& Architecture & Wireframes, database design, initial setup \\
+    Week 3--5 & Core Development & Homepage, registration, CMS, admin dashboard \\
+    Week 6--7 & Features \& Polish & Gallery, events, media uploads, exports, RBAC \\
+    Week 8 & Testing \& Deployment & Bug fixes, server setup, domain, SSL, launch \\
+    Week 9--10 & Training \& Support & Admin training, 2-week post-launch support \\
+    \bottomrule
+\end{tabularx}
+
+\vspace{0.5em}
+\textbf{Total: 8--10 weeks from project acceptance to launch.}
+
+% ══════════════════════════════════════════════════════════
+% 9. DELIVERABLES
+% ══════════════════════════════════════════════════════════
+\section{Deliverables}
+
+Upon completion and full payment, you receive:
+
+\begin{enumerate}[leftmargin=1.5em]
+    \item Fully functional, deployed website at your chosen domain
+    \item Complete source code --- \textbf{you own it}
+    \item Admin panel access with super admin credentials
+    \item Database with all seeded content ready to edit
+    \item 1 hour of hands-on admin training
+    \item Technical documentation for the CMS
+    \item 30 days of post-launch bug-fix support (free)
+    \item Source code on a Git repository for version control
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════
+% 10. TERMS & CONDITIONS
+% ══════════════════════════════════════════════════════════
+\section{Terms \& Conditions}
+
+\begin{enumerate}[leftmargin=1.5em]
+    \item \textbf{Ownership:} Upon full payment, all source code, design assets, and database structures become the sole property of Mukusho Karate Kenya.
+    \item \textbf{Confidentiality:} All club data, member information, and business details shared during development will be kept strictly confidential.
+    \item \textbf{Support:} 30 days of free bug-fix support after launch. Extended maintenance available at rates listed in Section 5.
+    \item \textbf{Revisions:} Up to 3 rounds of revisions are included. Additional revisions billed at KSH 1,500/hour.
+    \item \textbf{Third-party costs:} Domain registration, hosting, and SSL costs are billed separately and paid directly by Mukusho Karate Kenya.
+    \item \textbf{Scope changes:} Any features not listed in Section 2 will be quoted separately as add-ons.
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════
+% 11. ABOUT THE DEVELOPER
+% ══════════════════════════════════════════════════════════
+\section{About the Developer}
+
+\textbf{Daniel Vee} is a full-stack web developer with expertise in:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Laravel} (PHP) --- backend development, REST APIs, authentication, RBAC
+    \item \textbf{Tailwind CSS \& Alpine.js} --- modern, responsive frontend development
+    \item \textbf{MySQL} --- database design, migrations, optimization
+    \item \textbf{Server Administration} --- Linux, Nginx, deployment, SSL, backups
+    \item \textbf{UI/UX Design} --- mobile-first, conversion-optimized layouts
+\end{itemize}
+
+This project demonstrates a deep commitment to understanding your club's mission, branding, and operational needs --- resulting in a website that is not just functional, but a true digital home for Mukusho Karate Kenya.
+
+% ══════════════════════════════════════════════════════════
+% 12. NEXT STEPS
+% ══════════════════════════════════════════════════════════
+\section{Next Steps}
+
+\begin{enumerate}[leftmargin=1.5em]
+    \item \textbf{Review} this proposal
+    \item \textbf{Discuss} any questions, modifications, or additional features
+    \item \textbf{Accept} the proposal and sign the agreement
+    \item \textbf{Make} the first payment (50\%)
+    \item \textbf{Launch} begins immediately
+\end{enumerate}
+
+\vspace{2cm}
+
+% ══════════════════════════════════════════════════════════
+% SIGNATURES
+% ══════════════════════════════════════════════════════════
+\noindent\rule{6cm}{0.4pt}\hfill\rule{6cm}{0.4pt}\\[0.3em]
+\textbf{Daniel Vee}\hfill\textbf{Sensei Benard Kihachu}\\
+Developer\hfill Mukusho Karate Kenya\\[0.3em]
+Date: \rule{4cm}{0.4pt}\hfill Date: \rule{4cm}{0.4pt}
+
+\vspace{2cm}
+\begin{center}
+    \small\textcolor{mkgray}{
+    Daniel Vee\\
+    Email: [your-email@example.com]\\
+    Phone: [your-phone-number]
+    }
+\end{center}
+
+\vspace{1cm}
+\begin{center}
+    \small\textit{\textcolor{mkgray}{``Empowering every child with the greatness within them through confidence, discipline, and teamwork.''}}\\
+    \small\textcolor{mkgray}{--- Mukusho Karate Kenya}
+\end{center}
+
+\vfill
+\begin{center}
+    \small\textcolor{mkgray}{\textcopyright\ 2026 Daniel Vee. All rights reserved.}
+\end{center}
+
+\end{document}
