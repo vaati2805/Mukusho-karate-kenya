@@ -14,7 +14,7 @@ php artisan view:cache
 
 # Wait for the database to be ready
 echo "Waiting for database..."
-sleep 15
+sleep 30
 
 # Run database migrations
 php artisan migrate --force
