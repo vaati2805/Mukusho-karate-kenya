@@ -19,10 +19,7 @@ services:
       - key: APP_DEBUG
         value: "false"
       - key: APP_URL
-        fromRenderService:
-          type: web
-          name: mukusho-karate-kenya
-          property: url
+        value: "https://mukusho-karate-kenya.onrender.com"
       - key: LOG_CHANNEL
         value: stderr
       - key: DB_CONNECTION
