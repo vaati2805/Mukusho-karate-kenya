@@ -1,0 +1,49 @@
+databases:
+  - name: mukusho-db
+    plan: free
+    databaseName: mukusho_karate
+    user: mukusho
+
+services:
+  - type: web
+    plan: free
+    name: mukusho-karate-kenya
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    region: frankfurt
+    envVars:
+      - key: APP_NAME
+        value: "Mukusho Karate Kenya"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        fromRenderService:
+          type: web
+          name: mukusho-karate-kenya
+          property: url
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mukusho-db
+          property: connectionString
+      - key: DB_URL
+        fromDatabase:
+          name: mukusho-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: FILESYSTEM_DISK
+        value: public
+      - key: APP_KEY
+        generateValue: true
+      - key: MAIL_MAILER
+        value: log
