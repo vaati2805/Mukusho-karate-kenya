@@ -19,7 +19,7 @@ FROM php:8.3-fpm-alpine
 RUN apk add --no-cache \
     nginx \
     supervisor \
-    sqlite \
+    sqlite-dev \
     postgresql-dev \
     curl \
     libpng-dev \
