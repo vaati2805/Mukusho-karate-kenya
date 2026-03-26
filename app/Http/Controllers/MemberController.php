@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewRegistrationNotification;
+use App\Mail\RegistrationConfirmationToUser;
 use App\Models\Member;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class MemberController extends Controller
@@ -59,7 +63,9 @@ class MemberController extends Controller
 
         // Generate a shared group_id for this batch
         $groupId = time();
-        $totalAmount = count($cart) * 1000;
+        $totalAmount = collect($cart)->sum(function ($child) {
+            return floatval($child['amount'] ?? 1000);
+        });
 
         // Simulate M-Pesa STK push for total
         $mpesaReceipt = $this->simulateMpesaStkPush($validated['mpesa_phone'], $totalAmount);
@@ -106,7 +112,7 @@ class MemberController extends Controller
 
             Payment::create([
                 'member_id' => $member->id,
-                'amount' => 1000.00,
+                'amount' => floatval($child['amount'] ?? 1000),
                 'payment_type' => 'registration',
                 'mpesa_receipt' => $mpesaReceipt,
                 'mpesa_phone' => $validated['mpesa_phone'],
@@ -117,9 +123,50 @@ class MemberController extends Controller
         }
 
         $childCount = count($cart);
-        return redirect()->route('register.success')->with('success',
-            "Registration successful! {$childCount} child(ren) registered. M-Pesa payment of KSH " . number_format($totalAmount) . " received."
-        );
+        $childNames = collect($cart)->pluck('full_name')->implode(', ');
+        $club = $cart[0]['club'] ?? 'Not specified';
+
+        // Send email notification to admin
+        try {
+            Mail::to(config('app.admin_email'))->send(new NewRegistrationNotification(
+                memberType: 'kid',
+                names: $childNames,
+                count: $childCount,
+                phone: $validated['guardian_phone'],
+                club: $club,
+                amount: $totalAmount,
+                guardian: $validated['guardian_name'],
+            ));
+        } catch (\Exception $e) {
+            Log::warning('Registration email notification failed: ' . $e->getMessage());
+        }
+
+        // Send confirmation email to the guardian
+        try {
+            Mail::to($validated['guardian_email'])->send(new RegistrationConfirmationToUser(
+                memberType: 'kid',
+                names: $childNames,
+                count: $childCount,
+                club: $club,
+                amount: $totalAmount,
+                guardian: $validated['guardian_name'],
+            ));
+        } catch (\Exception $e) {
+            Log::warning('Registration user email notification failed: ' . $e->getMessage());
+        }
+
+        return redirect()->route('register.success')->with([
+            'success' => "Registration successful! {$childCount} child(ren) registered. M-Pesa payment of KSH " . number_format($totalAmount) . " received.",
+            'reg_notify' => [
+                'type' => 'kid',
+                'names' => $childNames,
+                'count' => $childCount,
+                'phone' => $validated['guardian_phone'],
+                'guardian' => $validated['guardian_name'],
+                'club' => $club,
+                'amount' => $totalAmount,
+            ],
+        ]);
     }
 
     /**
@@ -128,95 +175,105 @@ class MemberController extends Controller
     public function storeAdult(Request $request)
     {
         $validated = $request->validate([
-            'cart_data' => 'required|string',
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:members,email',
+            'phone' => 'required|string|max:20',
+            'gender' => 'nullable|string',
+            'date_of_birth' => 'nullable|date',
+            'location' => 'nullable|string|max:255',
+            'program' => 'required|string',
+            'club' => 'required|string',
+            'emergency_contact' => 'nullable|string|max:255',
+            'emergency_phone' => 'nullable|string|max:20',
+            'image' => 'nullable|image|max:3072',
             'mpesa_phone' => 'required|string|max:20',
-            'adult_images' => 'nullable|array',
-            'adult_images.*' => 'nullable|image|max:3072',
+            'amount' => 'required|numeric|min:100',
         ]);
 
-        $cart = json_decode($validated['cart_data'], true);
-
-        if (empty($cart) || !is_array($cart)) {
-            return back()->withErrors(['cart_data' => 'No adults were added to the cart.']);
+        // Handle optional adult image
+        $imagePath = null;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imagePath = $request->file('image')->store('members', 'public');
         }
 
-        // Validate each person in the cart
-        foreach ($cart as $index => $person) {
-            if (empty($person['full_name'])) {
-                return back()->withErrors(['cart_data' => 'Person #' . ($index + 1) . ' is missing a full name.']);
-            }
-            if (empty($person['email'])) {
-                return back()->withErrors(['cart_data' => 'Person #' . ($index + 1) . ' is missing an email address.']);
-            }
-            if (empty($person['phone'])) {
-                return back()->withErrors(['cart_data' => 'Person #' . ($index + 1) . ' is missing a phone number.']);
-            }
-            if (empty($person['program'])) {
-                return back()->withErrors(['cart_data' => 'Person #' . ($index + 1) . ' is missing a training program.']);
-            }
-            if (empty($person['club'])) {
-                return back()->withErrors(['cart_data' => 'Person #' . ($index + 1) . ' is missing a club/dojo.']);
-            }
-            // Check email uniqueness
-            if (Member::where('email', $person['email'])->exists()) {
-                return back()->withErrors(['cart_data' => 'The email "' . $person['email'] . '" is already registered.']);
-            }
-        }
-
-        // Handle optional adult images (matched by index)
-        $adultImages = $request->file('adult_images', []);
-
-        // Generate a shared group_id for this batch
-        $groupId = time();
-        $totalAmount = count($cart) * 1000;
+        $totalAmount = floatval($validated['amount']);
 
         // Simulate M-Pesa STK push for total
         $mpesaReceipt = $this->simulateMpesaStkPush($validated['mpesa_phone'], $totalAmount);
 
-        foreach ($cart as $index => $person) {
-            // Handle optional image for this person
-            $imagePath = null;
-            if (isset($adultImages[$index]) && $adultImages[$index]->isValid()) {
-                $imagePath = $adultImages[$index]->store('members', 'public');
-            }
+        $member = Member::create([
+            'member_type' => 'adult',
+            'full_name' => $validated['full_name'],
+            'email' => $validated['email'],
+            'image' => $imagePath,
+            'phone' => $validated['phone'],
+            'gender' => $validated['gender'] ?? null,
+            'date_of_birth' => !empty($validated['date_of_birth']) ? $validated['date_of_birth'] : null,
+            'location' => $validated['location'] ?? null,
+            'program' => $validated['program'],
+            'club' => $validated['club'],
+            'belt_rank' => 'White',
+            'emergency_contact' => $validated['emergency_contact'] ?? null,
+            'emergency_phone' => $validated['emergency_phone'] ?? null,
+            'membership_fee' => 1000.00,
+            'membership_paid' => true,
+            'status' => 'active',
+        ]);
 
-            $member = Member::create([
-                'member_type' => 'adult',
-                'full_name' => $person['full_name'],
-                'email' => $person['email'],
-                'image' => $imagePath,
-                'phone' => $person['phone'],
-                'gender' => $person['gender'] ?? null,
-                'date_of_birth' => !empty($person['date_of_birth']) ? $person['date_of_birth'] : null,
-                'location' => $person['location'] ?? null,
-                'program' => $person['program'],
-                'club' => $person['club'],
-                'belt_rank' => 'White',
-                'emergency_contact' => $person['emergency_contact'] ?? null,
-                'emergency_phone' => $person['emergency_phone'] ?? null,
-                'group_id' => $groupId,
-                'membership_fee' => 1000.00,
-                'membership_paid' => true,
-                'status' => 'active',
-            ]);
+        Payment::create([
+            'member_id' => $member->id,
+            'amount' => $totalAmount,
+            'payment_type' => 'registration',
+            'mpesa_receipt' => $mpesaReceipt,
+            'mpesa_phone' => $validated['mpesa_phone'],
+            'month_for' => now()->format('F Y'),
+            'status' => 'completed',
+            'transaction_date' => now(),
+        ]);
 
-            Payment::create([
-                'member_id' => $member->id,
-                'amount' => 1000.00,
-                'payment_type' => 'registration',
-                'mpesa_receipt' => $mpesaReceipt,
-                'mpesa_phone' => $validated['mpesa_phone'],
-                'month_for' => now()->format('F Y'),
-                'status' => 'completed',
-                'transaction_date' => now(),
-            ]);
+        $label = '1 adult';
+        $adultNames = $validated['full_name'];
+        $club = $validated['club'];
+        $phone = $validated['phone'];
+
+        // Send email notification to admin
+        try {
+            Mail::to(config('app.admin_email'))->send(new NewRegistrationNotification(
+                memberType: 'adult',
+                names: $adultNames,
+                count: 1,
+                phone: $phone,
+                club: $club,
+                amount: $totalAmount,
+            ));
+        } catch (\Exception $e) {
+            Log::warning('Registration email notification failed: ' . $e->getMessage());
         }
 
-        $personCount = count($cart);
-        $label = $personCount === 1 ? '1 adult' : "{$personCount} adults";
-        return redirect()->route('register.success')->with('success',
-            "Registration successful! {$label} registered. M-Pesa payment of KSH " . number_format($totalAmount) . " received."
-        );
+        // Send confirmation email to the member
+        try {
+            Mail::to($validated['email'])->send(new RegistrationConfirmationToUser(
+                memberType: 'adult',
+                names: $adultNames,
+                count: 1,
+                club: $club,
+                amount: $totalAmount,
+            ));
+        } catch (\Exception $e) {
+            Log::warning('Registration user email notification failed: ' . $e->getMessage());
+        }
+
+        return redirect()->route('register.success')->with([
+            'success' => "Registration successful! {$label} registered. M-Pesa payment of KSH " . number_format($totalAmount) . " received.",
+            'reg_notify' => [
+                'type' => 'adult',
+                'names' => $adultNames,
+                'count' => 1,
+                'phone' => $phone,
+                'club' => $club,
+                'amount' => $totalAmount,
+            ],
+        ]);
     }
 
     /**
@@ -228,11 +285,11 @@ class MemberController extends Controller
     }
 
     /**
-     * Simulate M-Pesa STK Push.
-     * In production, this would call the Safaricom Daraja API.
+     * Trigger M-Pesa STK Push.
      */
     private function simulateMpesaStkPush(string $phone, float $amount): string
     {
-        return strtoupper(Str::random(10));
+        $mpesaService = new \App\Services\MpesaService();
+        return $mpesaService->stkPush($phone, $amount, 'Mukusho_Reg');
     }
 }

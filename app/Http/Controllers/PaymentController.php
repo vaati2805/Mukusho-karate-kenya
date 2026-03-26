@@ -71,6 +71,19 @@ class PaymentController extends Controller
             'transaction_date' => now(),
         ]);
 
+        // Send confirmation email to the member
+        try {
+            \Illuminate\Support\Facades\Mail::to($member->email)
+                ->send(new \App\Mail\PaymentConfirmationToUser(
+                    memberName: $member->full_name,
+                    amount: $validated['amount'],
+                    monthFor: $validated['month_for'],
+                    receipt: $mpesaReceipt,
+                ));
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::warning('Payment user email notification failed: ' . $e->getMessage());
+        }
+
         return redirect()->route('payment.success')->with('success', 'Monthly payment of KSH ' . number_format($validated['amount']) . ' received successfully! Receipt: ' . $mpesaReceipt);
     }
 
@@ -83,10 +96,11 @@ class PaymentController extends Controller
     }
 
     /**
-     * Simulate M-Pesa STK Push.
+     * Trigger M-Pesa STK Push.
      */
     private function simulateMpesaStkPush(string $phone, float $amount): string
     {
-        return strtoupper(Str::random(10));
+        $mpesaService = new \App\Services\MpesaService();
+        return $mpesaService->stkPush($phone, $amount, 'Mukusho_Monthly');
     }
 }

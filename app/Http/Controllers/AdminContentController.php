@@ -305,16 +305,22 @@ class AdminContentController extends Controller
      */
     private function buildExtra(Request $request): array
     {
-        $extra = $request->input('extra', []);
+        $extra = [];
 
-        // Handle dynamic key-value pairs
+        // Handle dedicated extra[] form fields (section-specific inputs)
+        foreach ($request->input('extra', []) as $key => $value) {
+            if ($value === null || $value === '') continue;
+            $decoded = json_decode($value, true);
+            $extra[$key] = (json_last_error() === JSON_ERROR_NONE && $decoded !== null) ? $decoded : $value;
+        }
+
+        // Handle dynamic key-value pairs (can override dedicated fields)
         $extraKeys = $request->input('extra_keys', []);
         $extraValues = $request->input('extra_values', []);
 
         foreach ($extraKeys as $i => $key) {
             if (!empty($key) && isset($extraValues[$i])) {
                 $value = $extraValues[$i];
-                // Try to decode JSON values (arrays, booleans, etc.)
                 $decoded = json_decode($value, true);
                 $extra[$key] = (json_last_error() === JSON_ERROR_NONE && $decoded !== null) ? $decoded : $value;
             }

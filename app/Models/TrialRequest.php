@@ -9,6 +9,7 @@ class TrialRequest extends Model
     protected $fillable = [
         'name',
         'phone',
+        'email',
         'program',
         'message',
         'status',

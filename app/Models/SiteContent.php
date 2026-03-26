@@ -106,6 +106,12 @@ class SiteContent extends Model
             'features'     => 'Why Train With Us',
             'testimonials' => 'Testimonials',
             'about'        => 'About Section',
+            'gallery'      => 'Gallery / Inside The Dojo',
+            'hero_about'   => 'Hero — About Page',
+            'hero_resources' => 'Hero — Learning Resources',
+            'hero_achievements' => 'Hero — Achievements',
+            'hero_contact' => 'Hero — Contact Page',
+            'hero_events'  => 'Hero — Events Page',
         ];
     }
 }

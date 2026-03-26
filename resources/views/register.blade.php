@@ -24,7 +24,7 @@
                     <img src="{{ asset('images/mukusho-logo.jpeg') }}" alt="Mukusho Karate Kenya Logo" class="h-10 w-auto rounded-full shadow">
                     <div class="font-display font-bold tracking-wider uppercase text-sm">
                         <span class="text-white">MUKUSHO</span>
-                        <span class="text-green-400 text-xs ml-1">KARATE KENYA</span>
+                        <span class="text-red-400 text-xs ml-1">KARATE KENYA</span>
                     </div>
                 </a>
                 <a href="/" class="text-slate-400 hover:text-white text-sm transition-colors">&larr; Back to Home</a>
@@ -35,9 +35,9 @@
     <div class="max-w-2xl mx-auto px-4 py-12">
         {{-- Header --}}
         <div class="text-center mb-8">
-            <div class="inline-flex items-center bg-green-50 text-green-700 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">New Member Registration</div>
+            <div class="inline-flex items-center bg-red-50 text-red-700 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">New Member Registration</div>
             <h1 class="font-display text-4xl font-bold text-slate-900 uppercase">Join Mukusho Karate Kenya</h1>
-            <p class="text-slate-600 mt-2">Registration fee: <strong class="text-green-700">KSH 1,000</strong> (one-time, via M-Pesa)</p>
+            <p class="text-slate-600 mt-2">Registration fee: <strong class="text-red-700">KSH 1,000</strong> (one-time, via M-Pesa)</p>
         </div>
 
         {{-- Errors --}}
@@ -59,25 +59,25 @@
             {{-- Personal Info --}}
             <div>
                 <h3 class="font-display text-lg font-bold text-slate-900 uppercase mb-4 flex items-center gap-2">
-                    <span class="w-7 h-7 bg-green-700 text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                    <span class="w-7 h-7 bg-red-700 text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
                     Personal Information
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-slate-700 mb-1">Full Name <span class="text-red-500">*</span></label>
-                        <input type="text" name="full_name" value="{{ old('full_name') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="Enter your full name">
+                        <input type="text" name="full_name" value="{{ old('full_name') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="Enter your full name">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">Email Address <span class="text-red-500">*</span></label>
-                        <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="you@example.com">
+                        <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="you@example.com">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
-                        <input type="tel" name="phone" value="{{ old('phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="+254 7XX XXX XXX">
+                        <input type="tel" name="phone" value="{{ old('phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="+254 7XX XXX XXX">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">Gender</label>
-                        <select name="gender" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                        <select name="gender" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                             <option value="">Select gender</option>
                             <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
                             <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
@@ -86,7 +86,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">Date of Birth</label>
-                        <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                        <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                     </div>
                 </div>
             </div>
@@ -94,12 +94,12 @@
             {{-- Training --}}
             <div>
                 <h3 class="font-display text-lg font-bold text-slate-900 uppercase mb-4 flex items-center gap-2">
-                    <span class="w-7 h-7 bg-green-700 text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                    <span class="w-7 h-7 bg-red-700 text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
                     Training Program
                 </h3>
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Select Program <span class="text-red-500">*</span></label>
-                    <select name="program" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                    <select name="program" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                         <option value="">Choose a program</option>
                         <option value="kids" {{ old('program') == 'kids' ? 'selected' : '' }}>Little Warriors (Ages 5-12)</option>
                         <option value="teens-adults" {{ old('program') == 'teens-adults' ? 'selected' : '' }}>Teens & Adults (Ages 13+)</option>
@@ -111,17 +111,17 @@
             {{-- Emergency Contact --}}
             <div>
                 <h3 class="font-display text-lg font-bold text-slate-900 uppercase mb-4 flex items-center gap-2">
-                    <span class="w-7 h-7 bg-green-700 text-white rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                    <span class="w-7 h-7 bg-red-700 text-white rounded-full flex items-center justify-center text-xs font-bold">3</span>
                     Emergency Contact
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">Contact Name</label>
-                        <input type="text" name="emergency_contact" value="{{ old('emergency_contact') }}" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="Emergency contact name">
+                        <input type="text" name="emergency_contact" value="{{ old('emergency_contact') }}" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="Emergency contact name">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">Contact Phone</label>
-                        <input type="tel" name="emergency_phone" value="{{ old('emergency_phone') }}" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="+254 7XX XXX XXX">
+                        <input type="tel" name="emergency_phone" value="{{ old('emergency_phone') }}" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="+254 7XX XXX XXX">
                     </div>
                 </div>
             </div>
@@ -129,32 +129,32 @@
             {{-- Payment --}}
             <div>
                 <h3 class="font-display text-lg font-bold text-slate-900 uppercase mb-4 flex items-center gap-2">
-                    <span class="w-7 h-7 bg-green-600 text-white rounded-full flex items-center justify-center text-xs font-bold">4</span>
+                    <span class="w-7 h-7 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold">4</span>
                     M-Pesa Payment
                 </h3>
-                <div class="bg-green-50 border border-green-200 rounded-xl p-5 mb-4">
+                <div class="bg-red-50 border border-red-200 rounded-xl p-5 mb-4">
                     <div class="flex items-center gap-3 mb-2">
-                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                         <div>
-                            <div class="font-bold text-green-800">M-Pesa Lipa Na M-Pesa</div>
-                            <div class="text-sm text-green-700">A prompt will be sent to your phone. Enter your M-Pesa PIN to complete payment.</div>
+                            <div class="font-bold text-red-800">M-Pesa Lipa Na M-Pesa</div>
+                            <div class="text-sm text-red-700">A prompt will be sent to your phone. Enter your M-Pesa PIN to complete payment.</div>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg p-3 mt-3 flex items-center justify-between">
                         <span class="text-slate-600 text-sm">Registration Fee</span>
-                        <span class="font-display font-bold text-xl text-green-700">KSH 1,000</span>
+                        <span class="font-display font-bold text-xl text-red-700">KSH 1,000</span>
                     </div>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">M-Pesa Phone Number <span class="text-red-500">*</span></label>
-                    <input type="tel" name="mpesa_phone" value="{{ old('mpesa_phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
+                    <input type="tel" name="mpesa_phone" value="{{ old('mpesa_phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
                     <p class="text-xs text-slate-500 mt-1">Enter the phone number registered with M-Pesa. An STK push will be sent.</p>
                 </div>
             </div>
 
             {{-- Submit --}}
             <div class="pt-4">
-                <button type="submit" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-4 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display">
+                <button type="submit" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold py-4 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display">
                     Register & Pay KSH 1,000 via M-Pesa &rarr;
                 </button>
                 <p class="text-xs text-slate-500 text-center mt-3">By registering, you agree to abide by the Mukusho Karate Kenya code of conduct.</p>

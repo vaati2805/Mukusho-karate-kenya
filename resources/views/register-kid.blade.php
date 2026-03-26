@@ -16,26 +16,7 @@
 </head>
 <body class="bg-slate-100 min-h-screen">
 
-    {{-- Top Bar --}}
-    <div class="bg-green-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <a href="/" class="flex items-center space-x-3">
-                    <img src="{{ asset('images/mukusho-logo.jpeg') }}" alt="Mukusho Karate Kenya Logo" class="h-10 w-auto rounded-full shadow">
-                    <div class="font-display font-bold tracking-wider uppercase text-sm">
-                        <span class="text-white">MUKUSHO</span>
-                        <span class="text-amber-400 text-xs ml-1">KARATE KENYA</span>
-                    </div>
-                </a>
-                <div class="flex items-center gap-4">
-                    <a href="{{ route('register.create') }}" class="text-green-200 hover:text-white text-sm transition-colors flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-                        Change Type
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('partials.navbar')
 
     <div class="max-w-6xl mx-auto px-4 py-10" x-data="kidRegistration()" x-cloak>
 
@@ -78,7 +59,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Child's Full Name <span class="text-red-500">*</span></label>
-                                <input type="text" x-model="form.full_name" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="Enter child's full name">
+                                <input type="text" x-model="form.full_name" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="Enter child's full name">
                             </div>
                         </div>
 
@@ -86,15 +67,15 @@
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-1">Date of Birth <span class="text-red-500">*</span></label>
                             <div class="grid grid-cols-3 gap-3">
-                                <select x-model="form.dob_day" class="px-3 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                                <select x-model="form.dob_day" class="px-3 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                                     <option value="">Day</option>
                                     <template x-for="d in 31"><option :value="d" x-text="d"></option></template>
                                 </select>
-                                <select x-model="form.dob_month" class="px-3 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                                <select x-model="form.dob_month" class="px-3 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                                     <option value="">Month</option>
                                     <template x-for="(m, i) in months"><option :value="i + 1" x-text="m"></option></template>
                                 </select>
-                                <select x-model="form.dob_year" class="px-3 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                                <select x-model="form.dob_year" class="px-3 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                                     <option value="">Year</option>
                                     <template x-for="y in years"><option :value="y" x-text="y"></option></template>
                                 </select>
@@ -105,7 +86,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Gender <span class="text-red-500">*</span></label>
-                                <select x-model="form.gender" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                                <select x-model="form.gender" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                                     <option value="">Select gender</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -113,7 +94,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Relationship to Child <span class="text-red-500">*</span></label>
-                                <select x-model="form.relationship" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                                <select x-model="form.relationship" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                                     <option value="">Select relationship</option>
                                     <option value="Parent">Parent</option>
                                     <option value="Guardian">Guardian</option>
@@ -128,18 +109,18 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-1">School <span class="text-red-500">*</span></label>
-                                <input type="text" x-model="form.school" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="e.g. Nyeri Primary School">
+                                <input type="text" x-model="form.school" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="e.g. Nyeri Primary School">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Location / Area <span class="text-red-500">*</span></label>
-                                <input type="text" x-model="form.location" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="e.g. Nyeri Town">
+                                <input type="text" x-model="form.location" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="e.g. Nyeri Town">
                             </div>
                         </div>
 
                         {{-- Club --}}
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-1">Preferred Club / Dojo <span class="text-red-500">*</span></label>
-                            <select x-model="form.club" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                            <select x-model="form.club" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                                 <option value="">Select a club</option>
                                 <option value="Nyeri Main Dojo">Nyeri Main Dojo — Nyeri County</option>
                                 <option value="Nanyuki Sports Club">Nanyuki Sports Club — Laikipia County</option>
@@ -152,10 +133,11 @@
                             </select>
                         </div>
 
-                        {{-- Fee display --}}
-                        <div class="bg-green-50 border border-green-200 rounded-xl p-4 flex items-center justify-between">
-                            <span class="text-sm text-green-700 font-medium">Registration Fee</span>
-                            <span class="font-display font-bold text-xl text-green-800">KSH 1,000</span>
+                        {{-- Fee input --}}
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Registration Amount (KSH) <span class="text-red-500">*</span></label>
+                            <input type="number" x-model.number="form.amount" min="100" step="100" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="e.g. 1000">
+                            <p class="text-xs text-slate-500 mt-1">Enter the amount you wish to pay for this child's registration. Minimum KSH 100.</p>
                         </div>
 
                         {{-- Add to Cart / Update --}}
@@ -172,7 +154,7 @@
                                 </div>
                             </template>
                             <template x-if="editing === null">
-                                <button @click="addToCart()" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-3.5 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display flex items-center justify-center gap-2">
+                                <button @click="addToCart()" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3.5 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display flex items-center justify-center gap-2">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                                     Add Child to Cart
                                 </button>
@@ -225,8 +207,8 @@
                                             </div>
                                         </div>
                                         <div class="mt-2 flex items-center justify-between">
-                                            <span class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full" x-text="'Child ' + (index + 1)"></span>
-                                            <span class="font-display font-bold text-green-700 text-sm">KSH 1,000</span>
+                                            <span class="text-[10px] font-bold uppercase tracking-wider text-red-600 bg-red-50 px-2 py-0.5 rounded-full" x-text="'Child ' + (index + 1)"></span>
+                                            <span class="font-display font-bold text-red-700 text-sm" x-text="'KSH ' + (child.amount || 0).toLocaleString()"></span>
                                         </div>
                                     </div>
                                 </template>
@@ -236,11 +218,11 @@
                             <div class="border-t border-slate-200 pt-4 space-y-2">
                                 <div class="flex justify-between text-sm text-slate-600">
                                     <span>Children</span>
-                                    <span x-text="cart.length + ' × KSH 1,000'"></span>
+                                    <span x-text="cart.length + ' children'"></span>
                                 </div>
                                 <div class="flex justify-between text-lg font-display font-bold text-slate-900">
                                     <span>Total</span>
-                                    <span class="text-green-700" x-text="'KSH ' + (cart.length * 1000).toLocaleString()"></span>
+                                    <span class="text-red-700" x-text="'KSH ' + cart.reduce((sum, c) => sum + (c.amount || 0), 0).toLocaleString()"></span>
                                 </div>
                             </div>
                         </div>
@@ -262,41 +244,41 @@
                             <h4 class="font-display font-bold text-slate-800 uppercase text-sm">Guardian / Parent Details</h4>
                             <div>
                                 <label class="block text-xs font-medium text-slate-600 mb-1">Your Full Name <span class="text-red-500">*</span></label>
-                                <input type="text" name="guardian_name" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="Guardian's full name">
+                                <input type="text" name="guardian_name" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="Guardian's full name">
                             </div>
                             <div>
                                 <label class="block text-xs font-medium text-slate-600 mb-1">Phone Number <span class="text-red-500">*</span></label>
-                                <input type="tel" name="guardian_phone" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="+254 7XX XXX XXX">
+                                <input type="tel" name="guardian_phone" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="+254 7XX XXX XXX">
                             </div>
                             <div>
                                 <label class="block text-xs font-medium text-slate-600 mb-1">Email Address <span class="text-red-500">*</span></label>
-                                <input type="email" name="guardian_email" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="you@example.com">
+                                <input type="email" name="guardian_email" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="you@example.com">
                             </div>
 
                             {{-- Optional child photos --}}
                             <div>
                                 <label class="block text-xs font-medium text-slate-600 mb-1">Child Photo(s) <span class="text-slate-400 font-normal">(Optional)</span></label>
-                                <input type="file" name="child_images[]" accept="image/*" multiple class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                                <input type="file" name="child_images[]" accept="image/*" multiple class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
                                 <p class="text-xs text-slate-400 mt-1">Upload one photo per child (in cart order). Max 3MB each. Not mandatory.</p>
                             </div>
 
-                            <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+                            <div class="bg-red-50 border border-red-200 rounded-xl p-4">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                                    <span class="font-bold text-green-800 text-sm">M-Pesa Payment</span>
+                                    <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                    <span class="font-bold text-red-800 text-sm">M-Pesa Payment</span>
                                 </div>
                                 <div class="bg-white rounded-lg p-3 flex items-center justify-between mb-3">
                                     <span class="text-slate-600 text-xs">Total for <span x-text="cart.length"></span> child(ren)</span>
-                                    <span class="font-display font-bold text-green-700" x-text="'KSH ' + (cart.length * 1000).toLocaleString()"></span>
+                                    <span class="font-display font-bold text-red-700" x-text="'KSH ' + cart.reduce((sum, c) => sum + (c.amount || 0), 0).toLocaleString()"></span>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-medium text-slate-600 mb-1">M-Pesa Phone <span class="text-red-500">*</span></label>
-                                    <input type="tel" name="mpesa_phone" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
+                                    <input type="tel" name="mpesa_phone" required class="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
                                 </div>
                             </div>
 
-                            <button type="submit" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-3.5 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display">
-                                Register & Pay KSH <span x-text="(cart.length * 1000).toLocaleString()"></span> &rarr;
+                            <button type="submit" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3.5 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display">
+                                Register & Pay KSH <span x-text="cart.reduce((sum, c) => sum + (c.amount || 0), 0).toLocaleString()"></span> &rarr;
                             </button>
                             <button type="button" @click="showPayment = false" class="w-full text-slate-500 hover:text-slate-700 text-sm transition-colors py-1">
                                 &larr; Back to cart
@@ -335,6 +317,7 @@
                     school: '',
                     location: '',
                     club: '',
+                    amount: 1000,
                 },
                 resetForm() {
                     this.form = {
@@ -347,6 +330,7 @@
                         school: '',
                         location: '',
                         club: '',
+                        amount: 1000,
                     };
                 },
                 validate() {
@@ -358,6 +342,7 @@
                     if (!f.school.trim()) { alert('Please enter the school name.'); return false; }
                     if (!f.location.trim()) { alert('Please enter the location/area.'); return false; }
                     if (!f.club) { alert('Please select a club/dojo.'); return false; }
+                    if (!f.amount || f.amount < 100) { alert('Please enter a registration amount (minimum KSH 100).'); return false; }
                     return true;
                 },
                 addToCart() {

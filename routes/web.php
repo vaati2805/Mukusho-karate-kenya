@@ -7,19 +7,93 @@ use App\Http\Controllers\PaymentController;
 use App\Models\SiteContent;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+// ═══════════════════════════════════════════════════════════════
+// GLOBAL SITE MODE SETTING
+// ═══════════════════════════════════════════════════════════════
+// Change $mode to 1, 2, or 3 based on exactly what you need.
+//
+// 1 = Full Portal Mode: Portal is home page. Karate is live. Films is live.
+// 2 = Karate Direct: Karate is home page. Films is under maintenance.
+// 3 = Films Maintenance: Portal is home page. Karate is live. Films is under maintenance.
+// ═══════════════════════════════════════════════════════════════
+$mode = 2; // <--- CHANGE THIS NUMBER TO 1, 2, OR 3 
+
+if ($mode === 1) {
+    Route::get('/', fn() => view('portal'))->name('portal');
+    Route::get('/films', fn() => view('films.home'))->name('films.home');
+} 
+elseif ($mode === 2) {
+    Route::get('/', fn() => redirect()->route('karate.home'))->name('portal');
+    Route::get('/films', fn() => view('maintenance', ['autoShowModal' => true]))->name('films.home');
+} 
+elseif ($mode === 3) {
+    Route::get('/', fn() => view('maintenance'))->name('portal');
+    Route::get('/films', fn() => view('maintenance', ['autoShowModal' => true]))->name('films.home');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ── KARATE HOME ── (Always active for all modes)
+Route::get('/karate', function () {
     $sections = [];
     foreach (SiteContent::sections() as $key => $label) {
         $sections[$key] = SiteContent::forSection($key);
     }
     return view('welcome', compact('sections'));
-});
+})->name('karate.home');
+
+// Dedicated Pages (JKA-style navigation)
+Route::get('/about', function () {
+    $sections = [];
+    foreach (SiteContent::sections() as $key => $label) {
+        $sections[$key] = SiteContent::forSection($key);
+    }
+    return view('pages.about', compact('sections'));
+})->name('about');
+
+Route::get('/learning-resources', function () {
+    $sections = [];
+    foreach (SiteContent::sections() as $key => $label) {
+        $sections[$key] = SiteContent::forSection($key);
+    }
+    return view('pages.learning-resources', compact('sections'));
+})->name('learning.resources');
+
+Route::get('/achievements', function () {
+    $sections = [];
+    foreach (SiteContent::sections() as $key => $label) {
+        $sections[$key] = SiteContent::forSection($key);
+    }
+    return view('pages.achievements', compact('sections'));
+})->name('achievements');
+
+Route::get('/events', function () {
+    $sections = [];
+    foreach (SiteContent::sections() as $key => $label) {
+        $sections[$key] = SiteContent::forSection($key);
+    }
+    return view('pages.events', compact('sections'));
+})->name('events');
+
+Route::get('/contact', function () {
+    $sections = [];
+    foreach (SiteContent::sections() as $key => $label) {
+        $sections[$key] = SiteContent::forSection($key);
+    }
+    return view('pages.contact', compact('sections'));
+})->name('contact');
+
+// Instructor Details
+Route::get('/instructor/view/{id}', function($id) {
+    $instructor = \App\Models\SiteContent::findOrFail($id);
+    return view('instructor-detail', compact('instructor'));
+})->name('instructor.show');
 
 // Free Trial Request
 Route::post('/free-trial', function (\Illuminate\Http\Request $request) {
     $request->validate([
         'name'    => 'required|string|max:100',
         'phone'   => 'required|string|max:20',
+        'email'   => 'required|email|max:255',
         'program' => 'nullable|string|max:50',
         'message' => 'nullable|string|max:500',
     ]);
@@ -27,11 +101,43 @@ Route::post('/free-trial', function (\Illuminate\Http\Request $request) {
     \App\Models\TrialRequest::create([
         'name'    => $request->name,
         'phone'   => $request->phone,
+        'email'   => $request->email,
         'program' => $request->program,
         'message' => $request->message,
     ]);
 
-    return redirect('/#contact')->with('trial_success', 'Your free trial request has been submitted! We\'ll contact you shortly.');
+    // Send email notification to admin
+    try {
+        \Illuminate\Support\Facades\Mail::to(config('app.admin_email'))
+            ->send(new \App\Mail\FreeTrialNotification(
+                trialName: $request->name,
+                trialPhone: $request->phone,
+                trialProgram: $request->program,
+                trialMessage: $request->message,
+            ));
+    } catch (\Exception $e) {
+        \Illuminate\Support\Facades\Log::warning('Trial email notification failed: ' . $e->getMessage());
+    }
+
+    // Send confirmation email to the user
+    try {
+        \Illuminate\Support\Facades\Mail::to($request->email)
+            ->send(new \App\Mail\TrialConfirmationToUser(
+                userName: $request->name,
+                program: $request->program,
+            ));
+    } catch (\Exception $e) {
+        \Illuminate\Support\Facades\Log::warning('Trial user email notification failed: ' . $e->getMessage());
+    }
+
+    return redirect('/#contact')->with([
+        'trial_success' => 'Your free trial request has been submitted! A confirmation email has been sent to your inbox.',
+        'trial_notify' => [
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'program' => $request->program ?? 'Not specified',
+        ],
+    ]);
 })->name('free.trial.store');
 
 // Registration - Type Chooser

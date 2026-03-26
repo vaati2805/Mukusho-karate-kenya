@@ -31,7 +31,7 @@
             <p class="text-slate-600 mb-6">Your monthly fee has been processed. Keep training hard and stay consistent!</p>
 
             <div class="flex gap-3 justify-center">
-                <a href="/" class="inline-block bg-green-700 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg uppercase text-sm tracking-wide transition-all font-display">
+                <a href="/" class="inline-block bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg uppercase text-sm tracking-wide transition-all font-display">
                     &larr; Home
                 </a>
                 <a href="{{ route('payment.create') }}" class="inline-block bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-3 px-6 rounded-lg uppercase text-sm tracking-wide transition-all font-display">

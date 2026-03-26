@@ -99,6 +99,55 @@
             </div>
         </div>
 
+        {{-- Website Content Quick Access --}}
+        @if(Auth::user()->canView('content'))
+        <div class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="font-display font-bold text-lg text-slate-900 uppercase">Website Content</h2>
+                <a href="{{ route('admin.content.index') }}" class="text-green-700 hover:text-green-600 text-sm font-semibold transition-colors">View All →</a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+                @php
+                    $sectionCards = [
+                        ['key' => 'hero', 'icon' => '🏠', 'label' => 'Hero Banner', 'color' => 'bg-slate-800', 'desc' => 'Main homepage banner'],
+                        ['key' => 'events', 'icon' => '📅', 'label' => 'Events', 'color' => 'bg-red-700', 'desc' => 'Competitions & gradings'],
+                        ['key' => 'achievements', 'icon' => '🏆', 'label' => 'Achievements', 'color' => 'bg-amber-600', 'desc' => 'Awards & results'],
+                        ['key' => 'instructors', 'icon' => '🥋', 'label' => 'Instructors', 'color' => 'bg-green-700', 'desc' => 'Coaches & profiles'],
+                        ['key' => 'programs', 'icon' => '📋', 'label' => 'Programs', 'color' => 'bg-blue-700', 'desc' => 'Training programs'],
+                        ['key' => 'clubs', 'icon' => '📍', 'label' => 'Clubs', 'color' => 'bg-indigo-700', 'desc' => 'Club locations'],
+                        ['key' => 'schedule', 'icon' => '🕐', 'label' => 'Schedule', 'color' => 'bg-purple-700', 'desc' => 'Training timetable'],
+                        ['key' => 'faqs', 'icon' => '❓', 'label' => 'FAQ', 'color' => 'bg-teal-700', 'desc' => 'Common questions'],
+                        ['key' => 'values', 'icon' => '💎', 'label' => 'Values', 'color' => 'bg-cyan-700', 'desc' => 'Our core values'],
+                        ['key' => 'features', 'icon' => '⚡', 'label' => 'Features', 'color' => 'bg-orange-600', 'desc' => 'Why train with us'],
+                        ['key' => 'testimonials', 'icon' => '💬', 'label' => 'Testimonials', 'color' => 'bg-pink-700', 'desc' => 'Student reviews'],
+                        ['key' => 'about', 'icon' => '📖', 'label' => 'About', 'color' => 'bg-slate-700', 'desc' => 'About section'],
+                        ['key' => 'gallery', 'icon' => '📸', 'label' => 'Gallery', 'color' => 'bg-rose-700', 'desc' => 'Inside The Dojo photos & videos'],
+                        ['key' => 'hero_about', 'icon' => '🖼️', 'label' => 'Hero — About', 'color' => 'bg-violet-700', 'desc' => 'About page hero background'],
+                        ['key' => 'hero_resources', 'icon' => '🖼️', 'label' => 'Hero — Resources', 'color' => 'bg-violet-600', 'desc' => 'Learning Resources hero background'],
+                        ['key' => 'hero_achievements', 'icon' => '🖼️', 'label' => 'Hero — Achievements', 'color' => 'bg-violet-500', 'desc' => 'Achievements page hero background'],
+                        ['key' => 'hero_contact', 'icon' => '🖼️', 'label' => 'Hero — Contact', 'color' => 'bg-violet-800', 'desc' => 'Contact page hero background'],
+                        ['key' => 'hero_events', 'icon' => '🖼️', 'label' => 'Hero — Events', 'color' => 'bg-violet-900', 'desc' => 'Events page hero background'],
+                    ];
+                @endphp
+                @foreach($sectionCards as $card)
+                <a href="{{ route('admin.content.index', ['section' => $card['key']]) }}"
+                   class="group rounded-xl border border-slate-200 bg-white hover:shadow-md transition-all duration-200 overflow-hidden">
+                    <div class="{{ $card['color'] }} px-4 py-3 flex items-center gap-2.5">
+                        <span class="text-lg">{{ $card['icon'] }}</span>
+                        <span class="text-white text-sm font-bold uppercase tracking-wide">{{ $card['label'] }}</span>
+                    </div>
+                    <div class="px-4 py-2.5">
+                        <p class="text-slate-400 text-xs">{{ $card['desc'] }}</p>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+            <div class="mt-3 bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-3 text-sm text-emerald-800">
+                <strong>📸 Gallery:</strong> Upload photos & videos to the <strong>Gallery</strong> section above and they will appear in the "Inside The Dojo" section on the homepage.
+            </div>
+        </div>
+        @endif
+
         {{-- Tab Switcher --}}
         <div class="flex items-center gap-2 mb-6 no-print">
             @if(Auth::user()->canView('members'))

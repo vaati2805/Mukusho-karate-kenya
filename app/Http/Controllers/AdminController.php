@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 
 class AdminController extends Controller
@@ -90,6 +92,23 @@ class AdminController extends Controller
             'permissions' => User::defaultPermissions(User::ROLE_VIEWER),
         ]);
 
+        // Notify admin about new pending account
+        try {
+            Mail::raw(
+                "New admin account registration pending approval:\n\n" .
+                "Name: {$validated['name']}\n" .
+                "Email: {$validated['email']}\n" .
+                "Phone: " . ($validated['phone'] ?? 'N/A') . "\n\n" .
+                "Log in to the admin panel to approve or reject this account.",
+                function ($message) use ($validated) {
+                    $message->to(config('app.admin_email'))
+                            ->subject('🔔 New Admin Account Pending — ' . $validated['name']);
+                }
+            );
+        } catch (\Exception $e) {
+            Log::warning('Admin registration notification email failed: ' . $e->getMessage());
+        }
+
         return redirect()->route('admin.register.form')
             ->with('success', 'Account created successfully! Please wait for a Super Admin to approve your account before you can access the admin panel.');
     }
@@ -137,6 +156,10 @@ class AdminController extends Controller
      */
     public function exportMembersCsv()
     {
+        if (!Auth::user()->canView('members')) {
+            abort(403, 'You do not have permission to export member data.');
+        }
+
         $members = Member::all();
 
         $headers = [
@@ -174,6 +197,10 @@ class AdminController extends Controller
      */
     public function exportPaymentsCsv()
     {
+        if (!Auth::user()->canView('payments')) {
+            abort(403, 'You do not have permission to export payment data.');
+        }
+
         $payments = Payment::with('member')->get();
 
         $headers = [
@@ -210,6 +237,10 @@ class AdminController extends Controller
      */
     public function exportMembersXls()
     {
+        if (!Auth::user()->canView('members')) {
+            abort(403, 'You do not have permission to export member data.');
+        }
+
         $members = Member::all();
 
         $html = '<table border="1">';
@@ -243,6 +274,10 @@ class AdminController extends Controller
      */
     public function exportPaymentsXls()
     {
+        if (!Auth::user()->canView('payments')) {
+            abort(403, 'You do not have permission to export payment data.');
+        }
+
         $payments = Payment::with('member')->get();
 
         $html = '<table border="1">';
@@ -275,6 +310,10 @@ class AdminController extends Controller
      */
     public function exportMembersPdf()
     {
+        if (!Auth::user()->canView('members')) {
+            abort(403, 'You do not have permission to export member data.');
+        }
+
         $members = Member::all();
         return view('admin.exports.members-pdf', compact('members'));
     }
@@ -284,6 +323,10 @@ class AdminController extends Controller
      */
     public function exportPaymentsPdf()
     {
+        if (!Auth::user()->canView('payments')) {
+            abort(403, 'You do not have permission to export payment data.');
+        }
+
         $payments = Payment::with('member')->get();
         return view('admin.exports.payments-pdf', compact('payments'));
     }

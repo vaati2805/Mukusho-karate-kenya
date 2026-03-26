@@ -123,4 +123,16 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Notification Email
+    |--------------------------------------------------------------------------
+    |
+    | This is the email address where registration notifications, free trial
+    | requests, and other admin alerts are sent.
+    |
+    */
+
+    'admin_email' => env('ADMIN_NOTIFICATION_EMAIL', 'danielvaati2805@gmail.com'),
+
 ];

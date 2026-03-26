@@ -109,11 +109,13 @@ class SiteContentSeeder extends Seeder
 
         /* ─── SCHEDULE ──────────────────────────────────── */
         $schedule = [
-            ['day' => 'Monday', 'time' => '5:30 PM - 7:30 PM', 'focus' => 'Kihon & Kata Fundamentals', 'active' => true],
-            ['day' => 'Tuesday', 'time' => '5:30 PM - 7:30 PM', 'focus' => 'Kumite Techniques & Sparring', 'active' => true],
-            ['day' => 'Wednesday', 'time' => '5:30 PM - 7:30 PM', 'focus' => 'Kata Refinement & Conditioning', 'active' => true],
-            ['day' => 'Thursday', 'time' => '5:30 PM - 7:30 PM', 'focus' => 'Mixed Practice & Competition Prep', 'active' => true],
-            ['day' => 'Fri - Sun', 'time' => 'Rest / Competition Days', 'focus' => 'Recovery & Tournament Participation', 'active' => false],
+            ['day' => 'Monday', 'time' => '5:00 PM - 7:00 PM', 'focus' => 'Kihon & Kata Fundamentals', 'active' => true],
+            ['day' => 'Tuesday', 'time' => '5:00 PM - 7:00 PM', 'focus' => 'Kumite Techniques & Sparring', 'active' => true],
+            ['day' => 'Wednesday', 'time' => '5:00 PM - 7:00 PM', 'focus' => 'Kata Refinement & Conditioning', 'active' => true],
+            ['day' => 'Thursday', 'time' => '5:00 PM - 7:00 PM', 'focus' => 'Mixed Practice & Competition Prep', 'active' => true],
+            ['day' => 'Friday', 'time' => '5:00 PM - 7:00 PM', 'focus' => 'Kumite & Free Practice', 'active' => true],
+            ['day' => 'Saturday', 'time' => '9:00 AM - 4:30 PM', 'focus' => 'Kids Program (Ages 4-16)', 'active' => true],
+            ['day' => 'Sunday', 'time' => 'Rest / Competition Days', 'focus' => 'Recovery & Tournament Participation', 'active' => false],
         ];
 
         foreach ($schedule as $i => $s) {

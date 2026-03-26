@@ -16,32 +16,15 @@
 </head>
 <body class="bg-slate-100 min-h-screen">
 
-    {{-- Top Bar --}}
-    <div class="bg-green-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <a href="/" class="flex items-center space-x-3">
-                    <img src="{{ asset('images/mukusho-logo.jpeg') }}" alt="Mukusho Karate Kenya Logo" class="h-10 w-auto rounded-full shadow">
-                    <div class="font-display font-bold tracking-wider uppercase text-sm">
-                        <span class="text-white">MUKUSHO</span>
-                        <span class="text-amber-400 text-xs ml-1">KARATE KENYA</span>
-                    </div>
-                </a>
-                <a href="/" class="text-green-200 hover:text-white text-sm transition-colors flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-                    Back to Home
-                </a>
-            </div>
-        </div>
-    </div>
+    @include('partials.navbar')
 
     {{-- Main Content --}}
     <div class="max-w-2xl mx-auto px-4 py-10" x-data="{ selectedType: '' }" x-cloak>
 
         {{-- Header --}}
         <div class="text-center mb-8">
-            <div class="inline-flex items-center bg-green-50 text-green-700 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
-                <span class="w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></span>
+            <div class="inline-flex items-center bg-red-50 text-red-700 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
+                <span class="w-2 h-2 bg-red-600 rounded-full mr-2 animate-pulse"></span>
                 Existing Members
             </div>
             <h1 class="font-display text-3xl md:text-4xl font-bold text-slate-900 uppercase">Pay Monthly Fee</h1>
@@ -74,10 +57,10 @@
                     {{-- Adult Radio --}}
                     <label class="flex-1 cursor-pointer">
                         <input type="radio" name="pay_type" value="adult" x-model="selectedType" class="sr-only peer">
-                        <div class="border-2 rounded-xl p-5 flex items-center gap-4 transition-all hover:border-green-300"
-                             :class="selectedType === 'adult' ? 'border-green-600 bg-green-50 ring-2 ring-green-600/20' : 'border-slate-200'">
+                        <div class="border-2 rounded-xl p-5 flex items-center gap-4 transition-all hover:border-red-300"
+                             :class="selectedType === 'adult' ? 'border-red-600 bg-red-50 ring-2 ring-red-600/20' : 'border-slate-200'">
                             <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
-                                 :class="selectedType === 'adult' ? 'border-green-600 bg-green-600' : 'border-slate-300'">
+                                 :class="selectedType === 'adult' ? 'border-red-600 bg-red-600' : 'border-slate-300'">
                                 <div class="w-2 h-2 rounded-full bg-white" x-show="selectedType === 'adult'"></div>
                             </div>
                             <div>
@@ -88,7 +71,7 @@
                     </label>
                 </div>
 
-                <p class="text-xs text-slate-400 mt-3 text-center">Not yet registered? <a href="{{ route('register.create') }}" class="text-green-700 font-semibold hover:underline">Register as a new member here</a></p>
+                <p class="text-xs text-slate-400 mt-3 text-center">Not yet registered? <a href="{{ route('register.create') }}" class="text-red-700 font-semibold hover:underline">Register as a new member here</a></p>
             </div>
         </div>
 
@@ -119,19 +102,19 @@
 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Guardian / Parent Email <span class="text-red-500">*</span></label>
-                    <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="Email used during registration">
+                    <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="Email used during registration">
                     <p class="text-xs text-slate-500 mt-1">Enter the guardian's email used when registering the child.</p>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Child's Full Name <span class="text-red-500">*</span></label>
-                    <input type="text" name="child_name" value="{{ old('child_name') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="Enter child's registered full name">
+                    <input type="text" name="child_name" value="{{ old('child_name') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="Enter child's registered full name">
                     <p class="text-xs text-slate-500 mt-1">Must match the name used during registration.</p>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Payment For Month <span class="text-red-500">*</span></label>
-                    <select name="month_for" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                    <select name="month_for" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                         @php
                             $months = [];
                             for ($i = 0; $i < 6; $i++) {
@@ -147,25 +130,25 @@
 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Amount (KSH) <span class="text-red-500">*</span></label>
-                    <input type="number" name="amount" value="{{ old('amount', 1000) }}" required min="100" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="1000">
+                    <input type="number" name="amount" value="{{ old('amount', 1000) }}" required min="100" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="1000">
                 </div>
 
                 {{-- M-Pesa --}}
-                <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+                <div class="bg-red-50 border border-red-200 rounded-xl p-5">
                     <div class="flex items-center gap-3 mb-3">
-                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                         <div>
-                            <div class="font-bold text-green-800">M-Pesa Lipa Na M-Pesa</div>
-                            <div class="text-sm text-green-700">An STK push will be sent to your phone.</div>
+                            <div class="font-bold text-red-800">M-Pesa Lipa Na M-Pesa</div>
+                            <div class="text-sm text-red-700">An STK push will be sent to your phone.</div>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">M-Pesa Phone Number <span class="text-red-500">*</span></label>
-                        <input type="tel" name="mpesa_phone" value="{{ old('mpesa_phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
+                        <input type="tel" name="mpesa_phone" value="{{ old('mpesa_phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-white font-bold py-4 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display">
+                <button type="submit" style="display:block;width:100%;background:#f59e0b;color:#ffffff;font-weight:700;padding:16px;border-radius:8px;text-transform:uppercase;letter-spacing:0.05em;font-size:14px;font-family:'Oswald',sans-serif;border:none;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#fbbf24';this.style.boxShadow='0 10px 25px rgba(245,158,11,0.3)'" onmouseout="this.style.background='#f59e0b';this.style.boxShadow='none'">
                     Pay Child's Monthly Fee via M-Pesa &rarr;
                 </button>
             </form>
@@ -180,19 +163,19 @@
                 <input type="hidden" name="payment_for" value="adult">
 
                 <h3 class="font-display text-lg font-bold text-slate-900 uppercase flex items-center gap-2">
-                    <span class="w-7 h-7 bg-green-700 text-white rounded-full flex items-center justify-center text-xs font-bold">🥋</span>
+                    <span class="w-7 h-7 bg-red-700 text-white rounded-full flex items-center justify-center text-xs font-bold">🥋</span>
                     Adult Monthly Fee
                 </h3>
 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Your Registered Email <span class="text-red-500">*</span></label>
-                    <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="Your registered email address">
+                    <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="Your registered email address">
                     <p class="text-xs text-slate-500 mt-1">Use the email you registered with.</p>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Payment For Month <span class="text-red-500">*</span></label>
-                    <select name="month_for" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm">
+                    <select name="month_for" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm">
                         @php
                             $months = [];
                             for ($i = 0; $i < 6; $i++) {
@@ -208,25 +191,25 @@
 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">Amount (KSH) <span class="text-red-500">*</span></label>
-                    <input type="number" name="amount" value="{{ old('amount', 1000) }}" required min="100" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="1000">
+                    <input type="number" name="amount" value="{{ old('amount', 1000) }}" required min="100" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="1000">
                 </div>
 
                 {{-- M-Pesa --}}
-                <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+                <div class="bg-red-50 border border-red-200 rounded-xl p-5">
                     <div class="flex items-center gap-3 mb-3">
-                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                         <div>
-                            <div class="font-bold text-green-800">M-Pesa Lipa Na M-Pesa</div>
-                            <div class="text-sm text-green-700">An STK push will be sent to your phone.</div>
+                            <div class="font-bold text-red-800">M-Pesa Lipa Na M-Pesa</div>
+                            <div class="text-sm text-red-700">An STK push will be sent to your phone.</div>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">M-Pesa Phone Number <span class="text-red-500">*</span></label>
-                        <input type="tel" name="mpesa_phone" value="{{ old('mpesa_phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
+                        <input type="tel" name="mpesa_phone" value="{{ old('mpesa_phone') }}" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition text-sm" placeholder="07XX XXX XXX">
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-4 rounded-lg uppercase tracking-wide transition-all hover:shadow-lg text-sm font-display">
+                <button type="submit" style="display:block;width:100%;background:#b91c1c;color:#ffffff;font-weight:700;padding:16px;border-radius:8px;text-transform:uppercase;letter-spacing:0.05em;font-size:14px;font-family:'Oswald',sans-serif;border:none;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#dc2626';this.style.boxShadow='0 10px 25px rgba(185,28,28,0.3)'" onmouseout="this.style.background='#b91c1c';this.style.boxShadow='none'">
                     Pay Monthly Fee via M-Pesa &rarr;
                 </button>
             </form>
