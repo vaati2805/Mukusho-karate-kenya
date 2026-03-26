@@ -13,7 +13,7 @@ COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-interaction --no-scripts --prefer-dist --optimize-autoloader
 
 # ── Stage 3: Production image ──
-FROM php:8.3-fpm-alpine
+FROM php:8.4-fpm-alpine AS base
 
 # Install system deps + PHP extensions
 RUN apk add --no-cache \
