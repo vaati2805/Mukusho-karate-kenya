@@ -12,11 +12,8 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# Wait for the database to be ready
-echo "Waiting for database..."
-sleep 30
-
 # Run database migrations
+echo "Running migrations..."
 php artisan migrate --force
 
 # Seed default content if needed
