@@ -9,15 +9,20 @@
 .group:hover > .nav-dropdown { opacity: 1 !important; visibility: visible !important; }
 /* Mobile utility bar */
 @media (max-width: 767px) {
-    .utility-bar-inner { flex-direction: column; gap: 6px !important; }
-    .utility-right { gap: 8px !important; font-size: 12px; }
+    .utility-bar { padding: 4px 0 !important; }
+    .utility-bar-inner { gap: 4px !important; }
+    .utility-bar-inner .social-icons { gap: 12px !important; }
+    .utility-bar-inner .social-icons svg { width: 16px !important; height: 16px !important; }
+    .utility-right { gap: 8px !important; }
     .utility-right .wa-text { display: none; }
-    .utility-bar { padding: 6px 0 !important; }
+    .utility-right .films-btn { font-size: 10px !important; padding: 4px 10px !important; }
     .desktop-nav { display: none !important; }
-    .nav-logo-img { height: 50px !important; }
-    .nav-logo-text { font-size: 1.25rem !important; }
-    .nav-logo-sub { font-size: 9px !important; }
-    .nav-bar-inner { height: 70px !important; }
+    .nav-logo-img { height: 40px !important; }
+    .nav-logo-text { font-size: 1rem !important; letter-spacing: 0.05em !important; }
+    .nav-logo-sub { font-size: 8px !important; letter-spacing: 0.15em !important; }
+    .nav-bar-inner { height: 56px !important; }
+    .nav-logo-link { gap: 10px !important; }
+    #navbar { top: 32px !important; }
 }
 @media (min-width: 1024px) {
     .desktop-nav { display: flex !important; }
@@ -27,7 +32,7 @@
 {{-- UTILITY BAR - Social Media + Films Switcher --}}
 <div class="utility-bar" style="position: fixed; width: 100%; z-index: 60; top: 0; background-color: #1f2937; color: white; padding: 8px 0;">
     <div class="utility-bar-inner" style="max-width: 80rem; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 20px;">
+        <div class="social-icons" style="display: flex; align-items: center; gap: 20px;">
             <a href="https://www.facebook.com/mukushomartials/" target="_blank" title="Facebook" style="transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.25)'" onmouseout="this.style.transform='scale(1)'">
                 <svg style="width: 20px; height: 20px; color: white;" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
             </a>
@@ -43,7 +48,7 @@
         </div>
         <div class="utility-right" style="display:flex;align-items:center;gap:16px;">
             {{-- 🎬 Films Switcher Button --}}
-            <a href="{{ route('films.home') }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 14px;border-radius:6px;background:rgba(124,58,237,0.25);border:1px solid rgba(139,92,246,0.5);color:#c4b5fd;text-decoration:none;transition:all 0.3s ease;white-space:nowrap;" onmouseover="this.style.background='rgba(124,58,237,0.5)';this.style.color='white';" onmouseout="this.style.background='rgba(124,58,237,0.25)';this.style.color='#c4b5fd';">🎬 Mukusho Films</a>
+            <a class="films-btn" href="{{ route('films.home') }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:6px 14px;border-radius:6px;background:rgba(124,58,237,0.25);border:1px solid rgba(139,92,246,0.5);color:#c4b5fd;text-decoration:none;transition:all 0.3s ease;white-space:nowrap;" onmouseover="this.style.background='rgba(124,58,237,0.5)';this.style.color='white';" onmouseout="this.style.background='rgba(124,58,237,0.25)';this.style.color='#c4b5fd';">🎬 Mukusho Films</a>
             <a href="https://wa.me/254743909457" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='white'">
                 <svg style="width: 16px; height: 16px;" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.662-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M2.004 22l1.352-4.968A9.892 9.892 0 011.95 11.95a9.96 9.96 0 1120.015 0 9.96 9.96 0 01-14.71 8.647L2.004 22zm5.446-2.583a8.172 8.172 0 109.916-12.8 8.17 8.17 0 00-11.416 1.492 8.118 8.118 0 00-1.085 4.39A8.106 8.106 0 005.12 17.1l-1.01 3.71 3.784-1.011z"/></svg>
                 <span class="wa-text">Chat with us on WhatsApp</span>
@@ -57,7 +62,7 @@
     <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
         <div class="nav-bar-inner" style="display: flex; justify-content: space-between; align-items: center; height: 96px;">
             {{-- Logo & Brand --}}
-            <a href="{{ route('karate.home') }}" style="display: flex; align-items: center; gap: 16px; flex-shrink: 0; text-decoration: none;">
+            <a class="nav-logo-link" href="{{ route('karate.home') }}" style="display: flex; align-items: center; gap: 16px; flex-shrink: 0; text-decoration: none;">
                 <img class="nav-logo-img" src="{{ asset('images/mukusho-logo.jpeg') }}" alt="Mukusho Karate Kenya Logo" style="height: 80px; width: auto; border-radius: 50%; border: 2px solid white; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);">
                 <div style="display: flex; flex-direction: column; justify-content: center;">
                     <span class="font-display nav-logo-text" style="font-weight: 700; font-size: 1.875rem; color: white; letter-spacing: 0.1em; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">MUKUSHO</span>
