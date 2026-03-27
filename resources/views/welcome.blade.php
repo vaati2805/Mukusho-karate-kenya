@@ -390,21 +390,21 @@
                         <span x-text="expanded ? 'Show Less ↑' : 'Read More ↓'">Read More ↓</span>
                     </button>
 
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="text-center p-4 bg-slate-50 rounded-xl border border-slate-100">
-                            <div class="text-3xl mb-2">心</div>
-                            <div class="font-display font-bold text-slate-900 uppercase text-sm">Spirit</div>
-                            <div class="text-xs text-slate-500 mt-1">Confidence & Discipline</div>
+                    <div class="grid grid-cols-3 gap-2 sm:gap-4">
+                        <div class="text-center p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="text-2xl sm:text-3xl mb-2">心</div>
+                            <div class="font-display font-bold text-slate-900 uppercase text-xs sm:text-sm">Spirit</div>
+                            <div class="text-xs text-slate-500 mt-1 hidden sm:block">Confidence & Discipline</div>
                         </div>
-                        <div class="text-center p-4 bg-slate-50 rounded-xl border border-slate-100">
-                            <div class="text-3xl mb-2">技</div>
-                            <div class="font-display font-bold text-slate-900 uppercase text-sm">Technique</div>
-                            <div class="text-xs text-slate-500 mt-1">Kata & Kumite Mastery</div>
+                        <div class="text-center p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="text-2xl sm:text-3xl mb-2">技</div>
+                            <div class="font-display font-bold text-slate-900 uppercase text-xs sm:text-sm">Technique</div>
+                            <div class="text-xs text-slate-500 mt-1 hidden sm:block">Kata & Kumite Mastery</div>
                         </div>
-                        <div class="text-center p-4 bg-slate-50 rounded-xl border border-slate-100">
-                            <div class="text-3xl mb-2">体</div>
-                            <div class="font-display font-bold text-slate-900 uppercase text-sm">Body</div>
-                            <div class="text-xs text-slate-500 mt-1">Fitness & Strength</div>
+                        <div class="text-center p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="text-2xl sm:text-3xl mb-2">体</div>
+                            <div class="font-display font-bold text-slate-900 uppercase text-xs sm:text-sm">Body</div>
+                            <div class="text-xs text-slate-500 mt-1 hidden sm:block">Fitness & Strength</div>
                         </div>
                     </div>
                 </div>
@@ -724,18 +724,18 @@
             </div>
 
             {{-- Stats Banner --}}
-            <div class="grid grid-cols-3 gap-4 mb-12 reveal">
-                <div class="bg-slate-900 rounded-2xl p-8 text-center text-white shadow-lg">
-                    <div class="font-display text-4xl md:text-5xl font-bold text-white">50+</div>
-                    <div class="text-slate-300 text-sm font-medium mt-2 uppercase tracking-wider">Active Athletes</div>
+            <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-12 reveal">
+                <div class="bg-slate-900 rounded-2xl p-4 sm:p-8 text-center text-white shadow-lg">
+                    <div class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">50+</div>
+                    <div class="text-slate-300 text-xs sm:text-sm font-medium mt-2 uppercase tracking-wider">Active Athletes</div>
                 </div>
-                <div class="bg-amber-500 rounded-2xl p-8 text-center text-white shadow-lg">
-                    <div class="font-display text-4xl md:text-5xl font-bold text-white">3</div>
-                    <div class="text-amber-50 text-sm font-medium mt-2 uppercase tracking-wider">Training Locations</div>
+                <div class="bg-amber-500 rounded-2xl p-4 sm:p-8 text-center text-white shadow-lg">
+                    <div class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">3</div>
+                    <div class="text-amber-50 text-xs sm:text-sm font-medium mt-2 uppercase tracking-wider">Training Locations</div>
                 </div>
-                <div class="bg-red-700 rounded-2xl p-8 text-center text-white shadow-lg">
-                    <div class="font-display text-4xl md:text-5xl font-bold text-white">10+</div>
-                    <div class="text-red-100 text-sm font-medium mt-2 uppercase tracking-wider">National Events</div>
+                <div class="bg-red-700 rounded-2xl p-4 sm:p-8 text-center text-white shadow-lg">
+                    <div class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">10+</div>
+                    <div class="text-red-100 text-xs sm:text-sm font-medium mt-2 uppercase tracking-wider">National Events</div>
                 </div>
             </div>
 
@@ -1260,7 +1260,7 @@
             @if($galleryItems->count() > 0)
             {{-- ═══ BENTO GALLERY GRID ═══ --}}
             <div class="reveal">
-                <div class="grid grid-cols-3 gap-4 auto-rows-[200px] md:auto-rows-[240px]">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 auto-rows-[150px] sm:auto-rows-[200px] md:auto-rows-[240px]">
                     @foreach($galleryItems->take(12) as $idx => $media)
                     @php
                         // First item: large hero spanning left column, 2 rows tall
@@ -1363,9 +1363,9 @@
             <div class="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 overflow-hidden reveal">
                 <div class="grid grid-cols-1 divide-y divide-slate-700/50">
                     @foreach($sections['schedule'] as $session)
-                    <div class="grid grid-cols-3 gap-4 p-5 hover:bg-slate-700/30 transition-colors {{ !$session->extra('active', true) ? 'opacity-50' : '' }}">
-                        <div class="font-display font-bold text-lg uppercase {{ $session->extra('active', true) ? 'text-red-400' : 'text-slate-500' }}">{{ $session->title }}</div>
-                        <div class="text-slate-300 font-medium">{{ $session->subtitle }}</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 p-4 sm:p-5 hover:bg-slate-700/30 transition-colors {{ !$session->extra('active', true) ? 'opacity-50' : '' }}">
+                        <div class="font-display font-bold text-base sm:text-lg uppercase {{ $session->extra('active', true) ? 'text-red-400' : 'text-slate-500' }}">{{ $session->title }}</div>
+                        <div class="text-slate-300 font-medium text-sm sm:text-base">{{ $session->subtitle }}</div>
                         <div class="text-slate-400 text-sm">{{ $session->content }}</div>
                     </div>
                     @endforeach

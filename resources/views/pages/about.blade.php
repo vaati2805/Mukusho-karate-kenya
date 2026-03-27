@@ -36,6 +36,20 @@
 
         .about-nav-link { font-weight: 700; color: white; text-transform: uppercase; font-size: 13px; letter-spacing: 0.05em; text-decoration: none; padding: 12px 24px; border-radius: 50px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; }
         .about-nav-link:hover { background: #fbbf24; color: #0f172a; border-color: #fbbf24; }
+
+        /* ── Mobile responsiveness ── */
+        @media (max-width: 768px) {
+            .about-grid-2col { grid-template-columns: 1fr !important; gap: 30px !important; }
+            .about-grid-3col { grid-template-columns: 1fr !important; gap: 20px !important; }
+            .about-interview-grid { grid-template-columns: 1fr !important; }
+            .about-interview-sidebar { min-height: 200px !important; padding: 30px 20px !important; }
+            .about-interview-content { padding: 24px 20px !important; }
+            .about-section { padding: 60px 16px !important; }
+            .about-heading { font-size: 1.8rem !important; }
+            .about-stat-box { position: relative !important; bottom: auto !important; right: auto !important; display: inline-block; margin-top: 16px; }
+            .about-hero { min-height: 45vh !important; padding: 100px 0 40px !important; }
+            .about-nav-link { font-size: 11px; padding: 10px 18px; }
+        }
     </style>
 </head>
 <body>
@@ -48,7 +62,7 @@
         $pageHero = $pageHeroItems->first();
         $heroMedia = $pageHero && $pageHero->media ? $pageHero->media->first() : null;
     @endphp
-    <section style="position: relative; min-height: 55vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; padding: 120px 0 60px;">
+    <section class="about-hero" style="position: relative; min-height: 55vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; padding: 120px 0 60px;">
         @if($heroMedia)
             @if($heroMedia->isImage())
                 <img src="{{ $heroMedia->url }}" alt="About Hero" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">
@@ -79,12 +93,12 @@
          ========================================== -->
     <div id="about-mukusho">
         {{-- Our Story --}}
-        <section id="content" style="padding: 80px 20px; background: white;">
+        <section id="content" class="about-section" style="padding: 80px 20px; background: white;">
             <div style="max-width: 1100px; margin: 0 auto;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <div class="about-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
                     <div>
                         <span style="color: #B91C1C; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px;">Our Story</span>
-                        <h2 class="font-display" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 24px;">The Birth of Mukusho Karate</h2>
+                        <h2 class="font-display about-heading" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 24px;">The Birth of Mukusho Karate</h2>
                         <p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
                             <strong>Mukusho Karate Kenya</strong> was founded with a deep passion for spreading the art of traditional karate across Kenya's central highlands. Based primarily in <strong>Nyeri, Nanyuki, and Murang'a</strong>, the organization draws its name from the Japanese concept of <em>Mokuso</em> (黙想) — the meditative practice of silent reflection that opens and closes every karate training session.
                         </p>
@@ -97,7 +111,7 @@
                     </div>
                     <div style="position: relative;">
                         <img src="{{ asset('images/mukusho-logo.jpeg') }}" alt="Mukusho Karate Training" style="width: 100%; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.15);">
-                        <div style="position: absolute; bottom: -20px; right: -20px; background: linear-gradient(135deg, #B91C1C, #EF4444); color: white; padding: 20px 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(185,28,28,0.3);">
+                        <div class="about-stat-box" style="position: absolute; bottom: -20px; right: -20px; background: linear-gradient(135deg, #B91C1C, #EF4444); color: white; padding: 20px 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(185,28,28,0.3);">
                             <span class="font-display" style="font-size: 2rem; font-weight: 700; display: block;">3+</span>
                             <span style="font-size: 13px; opacity: 0.9;">Training Locations</span>
                         </div>
@@ -107,10 +121,10 @@
         </section>
 
         {{-- Mission & Vision --}}
-        <section style="padding: 100px 20px; background: linear-gradient(135deg, #0f172a 0%, #7f1d1d 100%); color: white;">
+        <section class="about-section" style="padding: 100px 20px; background: linear-gradient(135deg, #0f172a 0%, #7f1d1d 100%); color: white;">
             <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
-                <h2 class="font-display" style="font-size: 2.5rem; font-weight: 700; margin-bottom: 60px;">Our Mission & Vision</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <h2 class="font-display about-heading" style="font-size: 2.5rem; font-weight: 700; margin-bottom: 60px;">Our Mission & Vision</h2>
+                <div class="about-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
                     <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 50px 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);">
                         <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
                             <svg style="width: 32px; height: 32px; color: #0f172a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -130,11 +144,11 @@
         </section>
 
         {{-- Our Values --}}
-        <section style="padding: 100px 20px; background: #f8fafc;">
+        <section class="about-section" style="padding: 100px 20px; background: #f8fafc;">
             <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
                 <span style="color: #B91C1C; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px;">What We Stand For</span>
-                <h2 class="font-display" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 60px;">Our Core Values</h2>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <h2 class="font-display about-heading" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 60px;">Our Core Values</h2>
+                <div class="about-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
                     <div class="value-card" style="background: white; padding: 40px 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
                         <div style="font-size: 3rem; margin-bottom: 16px;">🥋</div>
                         <h3 class="font-display" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">Discipline</h3>
@@ -160,17 +174,17 @@
          ========================================== -->
     <div id="shorin-ryu">
         {{-- Introduction / History --}}
-        <section style="padding: 100px 20px; background: white; border-top: 1px solid #e2e8f0;">
+        <section class="about-section" style="padding: 100px 20px; background: white; border-top: 1px solid #e2e8f0;">
             <div style="max-width: 1100px; margin: 0 auto;">
                 <div style="text-align: center; margin-bottom: 60px;">
                     <span style="color: #b91c1c; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px;">Origins & Heritage</span>
-                    <h2 class="font-display" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 24px;">The Art of Shorin-Ryu</h2>
+                    <h2 class="font-display about-heading" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 24px;">The Art of Shorin-Ryu</h2>
                     <p style="font-size: 1.25rem; color: #475569; line-height: 1.8; max-width: 800px; margin: 0 auto;">
                         Shorin-Ryu (少林流) is one of the oldest and most traditional forms of Okinawan martial arts, translating to "Shaolin Style." It blends indigenous Okinawan fighting arts with Chinese principles.
                     </p>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+                <div class="about-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
                     <div>
                         <h3 class="font-display" style="font-size: 1.8rem; font-weight: 700; color: #0f172a; margin-bottom: 24px;">History & Evolution</h3>
                         <p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
@@ -206,9 +220,9 @@
         </section>
 
         {{-- Belt System --}}
-        <section style="padding: 100px 20px; background: #f8fafc;">
+        <section class="about-section" style="padding: 100px 20px; background: #f8fafc;">
             <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <h2 class="font-display" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin-bottom: 16px;">The Belt Ranking System</h2>
+                <h2 class="font-display about-heading" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin-bottom: 16px;">The Belt Ranking System</h2>
                 <p style="color: #64748b; margin-bottom: 50px; font-size: 1.1rem;">Progress in karate is marked by the belt (obi) system, from white belt beginner to black belt mastery.</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
                     <div class="belt-bar" style="background: white; padding: 24px; border-radius: 12px; border: 2px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
@@ -255,19 +269,19 @@
          SECTION 3: INTERVIEWS
          ========================================== -->
     <div id="interviews">
-        <section style="padding: 100px 20px; background: white; border-top: 1px solid #e2e8f0;">
+        <section class="about-section" style="padding: 100px 20px; background: white; border-top: 1px solid #e2e8f0;">
             <div style="max-width: 1100px; margin: 0 auto;">
                 <span style="color: #B91C1C; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px;">Meet Our Team</span>
-                <h2 class="font-display" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 60px;">Instructor Spotlights</h2>
+                <h2 class="font-display about-heading" style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 12px 0 60px;">Instructor Spotlights</h2>
 
                 {{-- Sensei Benard Kihanchu --}}
-                <div class="interview-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; background: #f8fafc; border-radius: 20px; overflow: hidden; margin-bottom: 40px; border: 1px solid #e2e8f0;">
-                    <div style="background: linear-gradient(135deg, #B91C1C, #EF4444); padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 350px;">
+                <div class="interview-card about-interview-grid" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; background: #f8fafc; border-radius: 20px; overflow: hidden; margin-bottom: 40px; border: 1px solid #e2e8f0;">
+                    <div class="about-interview-sidebar" style="background: linear-gradient(135deg, #B91C1C, #EF4444); padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 350px;">
                         <img src="{{ asset('images/jamesinstructor.jpeg') }}" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); border: 3px solid rgba(255,255,255,0.3); margin-bottom: 20px;">
                         <h3 style="color: white; font-size: 1.25rem; font-weight: 700; margin: 0; text-align: center;">Sensei Benard Kihanchu</h3>
                         <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin: 4px 0 0; text-align: center;">Head Instructor & Founder</p>
                     </div>
-                    <div style="padding: 40px;">
+                    <div class="about-interview-content" style="padding: 40px;">
                         <div style="background: #B91C1C; color: white; display: inline-block; padding: 4px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Featured Interview</div>
                         <h3 class="font-display" style="font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; color: #0f172a;">"Karate Changed My Life — I Want It to Change Others' Lives Too"</h3>
                         <p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
@@ -283,15 +297,15 @@
                 </div>
 
                 {{-- Rev. Fr. Peter Kiongo --}}
-                <div class="interview-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; background: #f8fafc; border-radius: 20px; overflow: hidden; border: 1px solid #e2e8f0;">
-                    <div style="background: linear-gradient(135deg, #7c3aed, #4f46e5); padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 350px;">
+                <div class="interview-card about-interview-grid" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; background: #f8fafc; border-radius: 20px; overflow: hidden; border: 1px solid #e2e8f0;">
+                    <div class="about-interview-sidebar" style="background: linear-gradient(135deg, #7c3aed, #4f46e5); padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 350px;">
                         <div style="width: 120px; height: 120px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 3px solid rgba(255,255,255,0.3);">
                             <svg style="width: 60px; height: 60px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                         </div>
                         <h3 style="color: white; font-size: 1.25rem; font-weight: 700; margin: 0; text-align: center;">Rev. Fr. Peter Kiongo</h3>
                         <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin: 4px 0 0; text-align: center;">Spiritual Mentor</p>
                     </div>
-                    <div style="padding: 40px;">
+                    <div class="about-interview-content" style="padding: 40px;">
                         <div style="background: #7c3aed; color: white; display: inline-block; padding: 4px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Spiritual Guidance</div>
                         <h3 class="font-display" style="font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; color: #0f172a;">"Faith and Martial Arts: A Path to Character Development"</h3>
                         <p style="color: #475569; line-height: 1.8; margin-bottom: 16px;">
